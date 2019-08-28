@@ -21,7 +21,7 @@ SET row_security = off;
 --
 
 COMMENT ON SCHEMA wiki IS 'Ljudmila InterWiki';
-
+GRANT USAGE ON SCHEMA wiki TO public;
 
 --
 -- Name: content_type; Type: DOMAIN; Schema: wiki; Owner: wiki
