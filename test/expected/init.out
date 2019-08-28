@@ -1,0 +1,6 @@
+CREATE EXTENSION wiki cascade;
+NOTICE:  installing required extension "plperlu"
+\pset tuples_only
+\dx wiki
+ wiki | 0.1     | wiki   | SQL wiki
+

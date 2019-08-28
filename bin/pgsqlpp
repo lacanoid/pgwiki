@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+
+our $VI = $ENV{VERSION};
+our $V;
+our $opt_v = 0; # verbose
+
+sub errlog { print STDERR "pssqlpp:$_[0]\n"; }
+
+if($VI=~m!(\d+)(\.(\d+))?!) {
+	my ($maj,$min)=($1+0,$3+0);
+	if($maj>=10) { $min=0; }
+	$V = $maj+$min/10.0;
+	errlog "Preprocessing for Postgres version $V";
+} else {
+	errlog "No Postgres version specified in VERSION environment variable";
+}
+
+print "-- preprocessed by pgsqlpp for PG=$V\n";
+my $i=0;  # line number
+my $sv=0; # selected version
+my $unless=0;
+while($l=<>) {
+	$i++;
+	if($l=~m!^#(\S+)\s*(\S*)!) {
+		my ($c,$v2)=($1,$2);
+		if($opt_v) { errlog "Directive line $i \#$c $v2"; }
+		if($c eq 'if') { $sv=$v2; $unless=0; }
+		elsif($c eq 'unless') { $sv=$v2; $unless=1; }
+		elsif($c eq 'else') { $unless=!$unless; }
+		elsif($c eq 'end') { $sv=0; }
+		else {
+			errlog "Unknown Directive line $i \#$c $v2";
+		}
+	} else {
+		if($sv==0 || ($unless?($V<$sv):($V>=$sv))) {
+			print $l;
+		}
+	}
+}
+

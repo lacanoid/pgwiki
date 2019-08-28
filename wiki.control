@@ -1,0 +1,8 @@
+comment = 'SQL wiki'
+default_version = 0.1
+relocatable = false
+requires='plperlu'
+superuser = YES
+schema = 'wiki'
+
+

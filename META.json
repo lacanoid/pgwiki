@@ -1,0 +1,54 @@
+{
+   "name": "wiki",
+   "abstract": "SQL wiki",
+    "description": "A set of SQL functions for implementing wiki functionality",
+   "version": "0.1.0",
+   "maintainer": [
+      "Ziga Kranjec <ziga@ljudmila.org>"
+   ],
+   "license": {
+      "PostgreSQL": "http://www.postgresql.org/about/licence"
+   },
+   "prereqs": {
+      "runtime": {
+         "requires": {
+            "plperlu": 0,
+            "plpgsql": 0,
+            "PostgreSQL": "9.1.0"
+         },
+         "recommends": {
+            "PostgreSQL": "9.5.0"
+         }
+      }
+   },
+   "provides": {
+     "pgddl": {
+       "file": "wiki.sql",
+       "docfile": "README.md",
+       "version": "0.1.0",
+       "abstract": "SQL wiki"
+     }
+   },
+   "resources": {
+      "homepage": "https://github.com/lacanoid/pgwiki/wiki",
+      "bugtracker": {
+         "web": "https://github.com/lacanoid/pgwiki/issues"
+      },
+      "repository": {
+        "url":  "https://github.com/lacanoid/pgwiki.git",
+        "web":  "https://github.com/lacanoid/pgwiki",
+        "type": "git"
+      }
+   },
+   "generated_by": "Ziga Kranjec <ziga@ljudmila.org>",
+   "meta-spec": {
+      "version": "1.0.0",
+      "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "tags": [
+       "wiki",
+       "data",
+       "lisp",
+       "templates"
+   ]
+}
