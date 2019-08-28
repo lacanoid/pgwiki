@@ -6,4 +6,33 @@ a as (
 )
 select * from a
 ;
+ wiki.page_extract_links(xml)               | Extract links from (X)HTML
+ wiki.proc_get_info(text)                   | Inquire about a function
+ wiki.foreign_page_get(text,text)           | 
+ wiki.foreign_pages_search(text,text)       | 
+ wiki.html_entities(text)                   | 
+ wiki.html_tidy(text)                       | 
+ wiki.is_xml(regtype)                       | 
+ wiki.nid()                                 | 
+ wiki.nid_body()                            | 
+ wiki.nid_page()                            | 
+ wiki.nid_rev()                             | 
+ wiki.node_before_trigger()                 | 
+ wiki.node_links_trigger()                  | 
+ wiki.node_links_update(wiki.nid,xml)       | 
+ wiki.page_get(text)                        | 
+ wiki.page_get(text,wiki.nid)               | 
+ wiki.page_get(wiki.nid)                    | 
+ wiki.page_get_data(text)                   | 
+ wiki.page_get_data(text,wiki.nid)          | 
+ wiki.page_set(text,json)                   | 
+ wiki.page_set(text,text)                   | 
+ wiki.page_set(text,xml)                    | 
+ wiki.page_set_with_options(text,text,json) | 
+ wiki.special_all_pages()                   | 
+ wiki.special_new_pages()                   | 
+ wiki.special_recent_changes()              | 
+ wiki.title_parse(text)                     | 
+ wiki.wiki(text)                            | 
+ wiki.wiki_id()                             | 
 

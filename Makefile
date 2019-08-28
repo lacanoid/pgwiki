@@ -7,7 +7,8 @@ VTESTS       = $(shell bin/tests ${VERSION})
 
 DATA_built   = wiki--$(EXT_VERSION).sql
 
-REGRESS      = init manifest misc ${VTESTS}
+#REGRESS      = init manifest misc ${VTESTS}
+REGRESS      = init manifest misc
 #REGRESS      = ($shell bin/tests)
 REGRESS_OPTS = --inputdir=test
 
