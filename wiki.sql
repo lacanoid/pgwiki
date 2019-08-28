@@ -1038,6 +1038,7 @@ ALTER FUNCTION wiki.wiki(name text) OWNER TO wiki;
 
 CREATE TABLE wiki.body (
     body_id wiki.nid DEFAULT wiki.nid_body() NOT NULL,
+    body_hash text,
     body_text text,
     body_vector tsvector
 );
@@ -1131,6 +1132,7 @@ CREATE TABLE wiki.node (
     page_namespace wiki.namespace DEFAULT 'main'::wiki.namespace NOT NULL,
     page_regtype regtype,
     page_title text NOT NULL,
+    page_source text,
     page_body text,
     page_vector tsvector,
     rev_id wiki.nid,

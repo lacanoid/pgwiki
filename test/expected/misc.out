@@ -7,20 +7,28 @@ select wiki.page_set('Main_Page','Hello! :)');
        15
 (1 row)
 
+select wiki.page_set('rss','<rss></rss>'::xml);
+ page_set 
+----------
+       16
+(1 row)
+
 select page_title,
        page_body,
        page_regtype,
        page_vector
   from wiki.page;
- page_title | page_body | page_regtype | page_vector 
-------------+-----------+--------------+-------------
- Main_Page  | Hello! :) | _null_       | 'hello':1
-(1 row)
+ page_title |  page_body  | page_regtype | page_vector 
+------------+-------------+--------------+-------------
+ Main_Page  | Hello! :)   | _null_       | 'hello':1
+ rss        | <rss></rss> | xml          | 
+(2 rows)
 
 select rev_comment,rev_length
   from wiki.revision;
  rev_comment | rev_length 
 -------------+------------
  _null_      |          9
-(1 row)
+ _null_      |         11
+(2 rows)
 

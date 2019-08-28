@@ -32,4 +32,11 @@ Using
 
 The API provides public user functions:
 
+- `wiki.page_set(page_title text, content text)`
+- `wiki.page_set(page_title text, content xml)`
+- `wiki.page_set(page_title text, content json)`
+
+- `wiki.page_get(page_title text)`
+
+See also [full list of functions](test/expected/manifest.out).
 

@@ -4,6 +4,7 @@ SET client_min_messages = warning;
 SET ROLE postgres;
 
 select wiki.page_set('Main_Page','Hello! :)');
+select wiki.page_set('rss','<rss></rss>'::xml);
 
 select page_title,
        page_body,
