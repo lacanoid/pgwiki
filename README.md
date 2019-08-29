@@ -37,6 +37,7 @@ The API provides public user functions:
 - `wiki.page_set(page_title text, content json)`
 
 - `wiki.page_get(page_title text)`
+- `wiki.page_get_data(page_title text)`
 
 See also [full list of functions](test/expected/manifest.out).
 

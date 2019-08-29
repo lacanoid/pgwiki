@@ -7,6 +7,9 @@ a as (
 select * from a
 ;
  wiki.page_extract_links(xml)               | Extract links from (X)HTML
+ wiki.page_set(text,json)                   | Set page body of type json
+ wiki.page_set(text,text)                   | Set page body of type text
+ wiki.page_set(text,xml)                    | Set page body of type xml
  wiki.proc_get_info(text)                   | Inquire about a function
  wiki.foreign_page_get(text,text)           | 
  wiki.foreign_pages_search(text,text)       | 
@@ -25,9 +28,6 @@ select * from a
  wiki.page_get(wiki.nid)                    | 
  wiki.page_get_data(text)                   | 
  wiki.page_get_data(text,wiki.nid)          | 
- wiki.page_set(text,json)                   | 
- wiki.page_set(text,text)                   | 
- wiki.page_set(text,xml)                    | 
  wiki.page_set_with_options(text,text,json) | 
  wiki.special_all_pages()                   | 
  wiki.special_new_pages()                   | 

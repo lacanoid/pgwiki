@@ -28,34 +28,17 @@ GRANT USAGE ON SCHEMA wiki TO public;
 --
 
 CREATE DOMAIN wiki.content_type AS text NOT NULL;
-
-
-ALTER DOMAIN wiki.content_type OWNER TO wiki;
-
---
--- Name: id; Type: DOMAIN; Schema: wiki; Owner: wiki
---
-
 CREATE DOMAIN wiki.id AS integer;
-
-
-ALTER DOMAIN wiki.id OWNER TO wiki;
-
---
--- Name: link_reftype; Type: TYPE; Schema: wiki; Owner: wiki
---
-
 CREATE TYPE wiki.link_reftype AS ENUM (
     'href',
     'src'
 );
 
-
+ALTER DOMAIN wiki.content_type OWNER TO wiki;
+ALTER DOMAIN wiki.id OWNER TO wiki;
 ALTER TYPE wiki.link_reftype OWNER TO wiki;
 
---
--- Name: namespace; Type: TYPE; Schema: wiki; Owner: wiki
---
+---------------------------------------
 
 CREATE TYPE wiki.namespace AS ENUM (
     'main',
@@ -75,45 +58,17 @@ CREATE TYPE wiki.namespace AS ENUM (
 
 ALTER TYPE wiki.namespace OWNER TO wiki;
 
---
--- Name: nid; Type: DOMAIN; Schema: wiki; Owner: wiki
---
-
 CREATE DOMAIN wiki.nid AS bigint;
-
-
-ALTER DOMAIN wiki.nid OWNER TO wiki;
-
---
--- Name: result; Type: DOMAIN; Schema: wiki; Owner: wiki
---
-
 CREATE DOMAIN wiki.result AS xml;
-
-
-ALTER DOMAIN wiki.result OWNER TO wiki;
-
---
--- Name: url; Type: DOMAIN; Schema: wiki; Owner: wiki
---
-
 CREATE DOMAIN wiki.url AS text;
-
-
-ALTER DOMAIN wiki.url OWNER TO wiki;
-
---
--- Name: wiki_type; Type: DOMAIN; Schema: wiki; Owner: wiki
---
-
 CREATE DOMAIN wiki.wiki_type AS text;
 
-
+ALTER DOMAIN wiki.nid OWNER TO wiki;
+ALTER DOMAIN wiki.result OWNER TO wiki;
+ALTER DOMAIN wiki.url OWNER TO wiki;
 ALTER DOMAIN wiki.wiki_type OWNER TO wiki;
 
---
--- Name: foreign_page_get(text, text); Type: FUNCTION; Schema: wiki; Owner: wiki
---
+---------------------------------------
 
 CREATE FUNCTION wiki.foreign_page_get(wiki text, title text) RETURNS text
     LANGUAGE plperlu
@@ -710,7 +665,7 @@ begin
 end
 $$;
 
-
+comment on function wiki.page_set(full_title text, new_body json) is 'Set page body of type json';
 ALTER FUNCTION wiki.page_set(full_title text, new_body json) OWNER TO wiki;
 
 --
@@ -740,6 +695,7 @@ end
 $$;
 
 
+comment on function wiki.page_set(full_title text, new_body text) is 'Set page body of type text';
 ALTER FUNCTION wiki.page_set(full_title text, new_body text) OWNER TO wiki;
 
 --
@@ -771,6 +727,7 @@ $$;
 
 
 ALTER FUNCTION wiki.page_set(full_title text, new_body xml) OWNER TO wiki;
+comment on function wiki.page_set(full_title text, new_body xml) is 'Set page body of type xml';
 
 --
 -- Name: page_set_with_options(text, text, json); Type: FUNCTION; Schema: wiki; Owner: wiki
@@ -1134,6 +1091,7 @@ CREATE TABLE wiki.node (
     page_title text NOT NULL,
     page_source text,
     page_body text,
+    page_data jsonb,
     page_vector tsvector,
     rev_id wiki.nid,
     page_mimetype text

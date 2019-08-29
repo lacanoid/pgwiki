@@ -13,16 +13,37 @@ select wiki.page_set('rss','<rss></rss>'::xml);
        16
 (1 row)
 
+select wiki.page_set('talk:Main_Page','<li>Bla bla</li>'::xml);
+ page_set 
+----------
+       17
+(1 row)
+
+select wiki.page_set('Sandbox','More text here');
+ page_set 
+----------
+       18
+(1 row)
+
+select wiki.page_set('talk:Sandbox','{"aha":5}'::json);
+ page_set 
+----------
+       19
+(1 row)
+
 select page_title,
        page_body,
        page_regtype,
        page_vector
   from wiki.page;
- page_title |  page_body  | page_regtype | page_vector 
-------------+-------------+--------------+-------------
- Main_Page  | Hello! :)   | _null_       | 'hello':1
- rss        | <rss></rss> | xml          | 
-(2 rows)
+ page_title |    page_body     | page_regtype |        page_vector         
+------------+------------------+--------------+----------------------------
+ Main_Page  | Hello! :)        | _null_       | 'hello':1
+ rss        | <rss></rss>      | xml          | 
+ Main_Page  | <li>Bla bla</li> | xml          | 'bla':1,2
+ Sandbox    | More text here   | _null_       | 'here':3 'more':1 'text':2
+ Sandbox    | {"aha":5}        | json         | '5':2 'aha':1
+(5 rows)
 
 select rev_comment,rev_length
   from wiki.revision;
@@ -30,5 +51,8 @@ select rev_comment,rev_length
 -------------+------------
  _null_      |          9
  _null_      |         11
-(2 rows)
+ _null_      |         16
+ _null_      |         14
+ _null_      |          9
+(5 rows)
 
